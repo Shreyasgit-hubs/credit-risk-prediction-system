@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>CrediSense | Credit Risk Assessment</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Manrope:wght@600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<div class="ambient a"></div><div class="ambient b"></div>
+
+<header class="nav">
+  <div class="brand">
+    <div class="logo"><span></span><span></span><span></span></div>
+    <div><b>CrediSense</b><small>CREDIT RISK INTELLIGENCE</small></div>
+  </div>
+  <div class="nav-right">
+    <span class="online"><i></i> MODEL ONLINE</span>
+    <span class="api-pill" id="apiStatus"><i></i><b>CHECKING</b></span>
+  </div>
+</header>
+
+<main class="page">
+  <section class="hero">
+    <div>
+      <span class="eyebrow"><i></i> SMART CREDIT ASSESSMENT</span>
+      <h1>Turn borrower data<br>into a <em>clear risk signal.</em></h1>
+      <p>Complete the guided profile below. The trained model evaluates the applicant and returns a probability-based risk decision.</p>
+      <div class="hero-pills"><span>⚡ Instant prediction</span><span>◉ Probability based</span><span>↗ Explainable workflow</span></div>
+    </div>
+    <div class="hero-orbit">
+      <div class="orbit o1"></div><div class="orbit o2"></div><div class="orbit o3"></div>
+      <div class="orbit-core"><strong>RISK</strong><span>ENGINE</span><small>LIVE</small></div>
+      <b class="orb-dot d1"></b><b class="orb-dot d2"></b><b class="orb-dot d3"></b>
+    </div>
+  </section>
+
+  <section class="steps">
+    <div class="step active"><b>01</b><span>Borrower</span><small>Personal profile</small></div>
+    <div class="step-line"></div>
+    <div class="step active"><b>02</b><span>Loan</span><small>Exposure details</small></div>
+    <div class="step-line"></div>
+    <div class="step active"><b>03</b><span>History</span><small>Credit behaviour</small></div>
+    <div class="step-line"></div>
+    <div class="step output"><b>04</b><span>Decision</span><small>Model signal</small></div>
+  </section>
+
+  <section class="workspace" id="assessment">
+    <form class="form-card" id="riskForm" novalidate>
+      <div class="form-head">
+        <div><span class="kicker">APPLICATION BUILDER</span><h2>Create borrower profile</h2><p>Use the guided fields. Dropdowns keep values consistent with the trained model.</p></div>
+        <button class="reset-btn" type="button" id="resetBtn">Reset ↻</button>
+      </div>
+
+      <div class="completion">
+        <div><span>Profile completion</span><b id="progressText">100%</b></div>
+        <div class="progress"><i id="progressBar"></i></div>
+      </div>
+
+      <div class="form-section">
+        <div class="section-head"><div class="section-number">01</div><div><h3>Personal & employment</h3><p>Tell us who the borrower is.</p></div></div>
+        <div class="fields">
+          <label class="field">
+            <span>Age</span>
+            <div class="control"><span class="icon">◌</span><input type="number" id="person_age" value="30" min="18" max="100" required><em>YEARS</em></div>
+          </label>
+          <label class="field">
+            <span>Annual income</span>
+            <div class="control"><span class="icon">₹</span><input type="number" id="person_income" value="600000" min="0" step="1000" required><em>INR</em></div>
+          </label>
+          <label class="field">
+            <span>Home ownership</span>
+            <div class="control select-control"><span class="icon">⌂</span><select id="person_home_ownership"><option value="RENT">Rent</option><option value="MORTGAGE">Mortgage</option><option value="OWN">Own</option><option value="OTHER">Other</option></select><b>⌄</b></div>
+          </label>
+          <label class="field">
+            <span>Employment length</span>
+            <div class="control"><span class="icon">◷</span><input type="number" id="person_emp_length" value="5" min="0" max="60" step=".5" required><em>YEARS</em></div>
+          </label>
+        </div>
+      </div>
+
+      <div class="form-section">
+        <div class="section-head"><div class="section-number">02</div><div><h3>Loan request</h3><p>Shape the requested credit exposure.</p></div></div>
+        <div class="fields">
+          <label class="field">
+            <span>Loan purpose</span>
+            <div class="control select-control"><span class="icon">◆</span><select id="loan_intent"><option value="PERSONAL">Personal</option><option value="EDUCATION">Education</option><option value="MEDICAL">Medical</option><option value="VENTURE">Venture</option><option value="HOMEIMPROVEMENT">Home improvement</option><option value="DEBTCONSOLIDATION">Debt consolidation</option></select><b>⌄</b></div>
+          </label>
+          <label class="field">
+            <span>Loan grade</span>
+            <div class="control select-control"><span class="icon">★</span><select id="loan_grade"><option value="A">A — Strong</option><option value="B">B — Good</option><option value="C">C — Moderate</option><option value="D">D — Watch</option><option value="E">E — Elevated</option><option value="F">F — High</option><option value="G">G — Highest</option></select><b id="gradeDot">⌄</b></div>
+          </label>
+          <label class="field">
+            <span>Loan amount</span>
+            <div class="control"><span class="icon">₹</span><input type="number" id="loan_amnt" value="100000" min="0" step="500" required><em>INR</em></div>
+          </label>
+          <label class="field">
+            <span>Interest rate</span>
+            <div class="control"><span class="icon">%</span><input type="number" id="loan_int_rate" value="11.5" min="0" max="40" step=".01" required><em>APR</em></div>
+          </label>
+          <label class="field wide">
+            <div class="label-row"><span>Loan-to-income ratio</span><em>AUTO</em></div>
+            <div class="control"><span class="icon">↗</span><input type="number" id="loan_percent_income" value=".17" min="0" max="1" step=".01" required readonly><em>RATIO</em></div>
+            <div class="ratio"><i id="ratioFill"></i></div>
+            <small class="hint" id="ratioHint">Calculated from loan amount ÷ annual income.</small>
+          </label>
+        </div>
+      </div>
+
+      <div class="form-section">
+        <div class="section-head"><div class="section-number">03</div><div><h3>Credit history</h3><p>Previous credit behaviour and history length.</p></div></div>
+        <div class="fields">
+          <label class="field">
+            <span>Previous default on file</span>
+            <div class="choice">
+              <label><input type="radio" name="default_radio" value="N" checked><span>✓ No default</span></label>
+              <label><input type="radio" name="default_radio" value="Y"><span>Yes, default</span></label>
+            </div>
+          </label>
+          <label class="field">
+            <span>Credit history length</span>
+            <div class="control"><span class="icon">◫</span><input type="number" id="cb_person_cred_hist_length" value="6" min="0" max="60" required><em>YEARS</em></div>
+          </label>
+        </div>
+      </div>
+
+      <div class="submit-row">
+        <div class="trust"><span>✓</span><div><b>Ready to assess</b><small>Prediction runs through your local FastAPI model.</small></div></div>
+        <button class="assess" type="submit" id="submitBtn"><span>Run risk assessment</span><b>↗</b></button>
+      </div>
+      <div class="error" id="errorNote" hidden></div>
+    </form>
+
+    <aside class="result-panel">
+      <div class="result-card" id="resultCard">
+        <div class="result-top"><div><span class="kicker">LIVE MODEL OUTPUT</span><h2 id="resultTitle">Awaiting assessment</h2></div><span class="badge" id="resultBadge">READY</span></div>
+        <div class="gauge">
+          <svg viewBox="0 0 260 260"><circle class="g-bg" cx="130" cy="130" r="100"></circle><circle class="g-line" id="meterProgress" cx="130" cy="130" r="100"></circle></svg>
+          <div class="g-value"><div><strong id="probability">—</strong><span>%</span></div><small>DEFAULT PROBABILITY</small></div>
+          <div class="threshold"><small>THRESHOLD</small><b id="threshold">—</b></div>
+        </div>
+        <div class="decision"><div><i id="decisionDot"></i><strong id="decisionText">Complete the profile</strong></div><p id="decisionSub">Your model result will appear after you run the assessment.</p></div>
+        <div class="metrics"><div><small>PROBABILITY</small><b id="probabilityStat">—</b></div><div><small>THRESHOLD</small><b id="thresholdStat">—</b></div><div><small>DECISION</small><b id="decisionStat">—</b></div></div>
+        <div class="signal"><span>✦</span><div><b>Decision signal</b><p id="signalText">The trained model will evaluate the completed borrower profile.</p></div></div>
+        <button class="again" id="againBtn" type="button">↻ Run another assessment</button>
+      </div>
+      <div class="result-note"><div>◎</div><p><b>How to read this</b><br>The probability is compared with the model's threshold to produce the displayed decision.</p></div>
+    </aside>
+  </section>
+</main>
+
+<footer><span>CrediSense • Credit Risk Intelligence</span><span>ML-powered assessment interface</span></footer>
+<script src="script.js"></script>
+</body>
+</html>
